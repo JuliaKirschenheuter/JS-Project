@@ -5,11 +5,12 @@ import PhoneViewer from "./components/phone-viewer.js";
 import Filter from "./components/filter.js";
 import ShoppingCart from "./components/shopping-cart.js";
 import PhoneService from './phone-service.js';
+import Component from "../Component.js";
 
 
-export default class PhonesPage {
+export default class PhonesPage extends Component{
     constructor({element}) {
-        this._element = element;
+        super({element})
 
         this._render();
 

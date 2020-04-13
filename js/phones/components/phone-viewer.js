@@ -1,17 +1,15 @@
 'use strict';
 
-export default class PhoneViewer {
+import Component from "../../Component.js";
+
+export default class PhoneViewer extends Component{
 
     constructor({element}) {
-        this._element = element;
-    }
-
-    hide() {
-        this._element.hidden = true;
+        super({element})
     }
 
     show(phoneDetails) {
-        this._element.hidden = false;
+        super.show()
         this._phoneDetails = phoneDetails;
 
         this._render();

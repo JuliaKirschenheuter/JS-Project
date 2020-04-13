@@ -1,9 +1,11 @@
 'use strict';
 
-export default class PhoneCatalog {
+import Component from "../../Component.js";
+
+export default class PhoneCatalog extends Component{
 
     constructor({element, phones, onPhoneSelected}) {
-        this._element = element;
+        super({element})
         this._phones = phones;
         this._onPhoneSelected = onPhoneSelected
 
@@ -17,13 +19,6 @@ export default class PhoneCatalog {
         })
     }
 
-    hide() {
-        this._element.hidden = true;
-    }
-
-    show() {
-        this._element.hidden = false;
-    }
 
     _render() {
         this._element.innerHTML = `

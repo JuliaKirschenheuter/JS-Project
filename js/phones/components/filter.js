@@ -1,9 +1,10 @@
 'use strict';
 
-export default class Filter {
-    constructor({element}) {
-        this._element = element;
+import Component from "../../Component.js";
 
+export default class Filter extends Component{
+    constructor({element}) {
+        super({element});
         this._render();
     }
 

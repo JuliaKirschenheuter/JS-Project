@@ -1,10 +1,10 @@
 'use strict';
+import Component from "../../Component.js";
 
-export default class ShoppingCart {
+export default class ShoppingCart extends Component{
 
     constructor({element}) {
-        this._element = element;
-
+        super ({element})
         this._render();
     }
 
