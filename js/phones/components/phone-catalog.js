@@ -2,9 +2,10 @@
 
 export default class PhoneCatalog {
 
-    constructor({element, phones}) {
+    constructor({element, phones, onPhoneSelected}) {
         this._element = element;
         this._phones = phones;
+        this._onPhoneSelected = onPhoneSelected
 
         this._render();
 
@@ -12,8 +13,16 @@ export default class PhoneCatalog {
             const phoneLink = event.target.closest('[data-element="phone-link"]');
             if (!phoneLink) return;
             const phoneElement = phoneLink.closest('[data-element="phone"]');
-            console.log('phone selected', phoneElement.dataset.phoneId)
+            this._onPhoneSelected(phoneElement.dataset.phoneId);
         })
+    }
+
+    hide() {
+        this._element.hidden = true;
+    }
+
+    show() {
+        this._element.hidden = false;
     }
 
     _render() {
