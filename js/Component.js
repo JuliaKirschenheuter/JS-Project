@@ -29,4 +29,12 @@ export default class Component {
         })
     }
 
+    on (eventName, elementName, callback) {
+        this._element.addEventListener(eventName, (event) => {
+            const targetElement = event.target.closest(`[data-element="${elementName}"]`);
+            if (!targetElement) return;
+            callback(event)
+        })
+    }
+
 }

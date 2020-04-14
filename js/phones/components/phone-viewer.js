@@ -14,17 +14,13 @@ export default class PhoneViewer extends Component{
 
         this._render();
 
-        this._element.addEventListener('click', (event) => {
-            const backButton = event.target.closest('[data-element="back-button"]');
-            if (!backButton) return;
+        this.on('click', 'back-button', () => {
             this.emit('back', null);
-        })
+        });
 
-        this._element.addEventListener('click', (event) => {
-            const addButton =  event.target.closest('[data-element="add-button"]')
-            if(!addButton) return;
+        this.on('click', 'add-button', () => {
             this.emit('addToBasket', this._phoneDetails.id);
-        })
+        });
 
     }
 
