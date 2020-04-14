@@ -8,6 +8,14 @@ export default class ShoppingCart extends Component{
         this._render();
     }
 
+    add(phoneId) {
+
+    }
+
+    remove(phoneId) {
+
+    }
+
     _render() {
         this._element.innerHTML = `
           <p>Shopping Cart</p>

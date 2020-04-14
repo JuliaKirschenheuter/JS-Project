@@ -5,7 +5,7 @@ import Component from "../../Component.js";
 export default class PhoneViewer extends Component{
 
     constructor({element}) {
-        super({element})
+        super({element});
     }
 
     show(phoneDetails) {
@@ -13,6 +13,19 @@ export default class PhoneViewer extends Component{
         this._phoneDetails = phoneDetails;
 
         this._render();
+
+        this._element.addEventListener('click', (event) => {
+            const backButton = event.target.closest('[data-element="back-button"]');
+            if (!backButton) return;
+            this.emit('back', null);
+        })
+
+        this._element.addEventListener('click', (event) => {
+            const addButton =  event.target.closest('[data-element="add-button"]')
+            if(!addButton) return;
+            this.emit('addToBasket', this._phoneDetails.id);
+        })
+
     }
 
     _render() {
@@ -20,10 +33,20 @@ export default class PhoneViewer extends Component{
         let phone = this._phoneDetails;
 
         this._element.innerHTML = `
-          <img class="phone" src="${phone.images[0]}">
+          <img 
+          class="phone"
+          src="${ phone.images[0] }"
+          data-element="phone"
+          data-phone-id="${phone.id}"
+          >
 
-          <button>Back</button>
-          <button>Add to basket</button>
+          <button
+          data-element="back-button"
+          >Back</button>
+          
+          <button
+          data-element="add-button"
+          >Add to basket</button>
       
           <h1>${phone.name}</h1>
       

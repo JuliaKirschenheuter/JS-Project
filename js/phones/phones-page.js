@@ -14,6 +14,13 @@ export default class PhonesPage extends Component{
 
         this._render();
 
+        this._initPhoneCatalog();
+        this._initPhoneViewer();
+        this._initCart();
+        this._initFilter();
+    }
+
+    _initPhoneCatalog() {
         this._catalog = new PhoneCatalog({
             element: this._element.querySelector('[data-component="phone-catalog"]'),
             phones: PhoneService.getAll()
@@ -23,16 +30,36 @@ export default class PhonesPage extends Component{
             this._catalog.hide();
             let phoneDetails = PhoneService.getById(phoneId);
             this._viewer.show(phoneDetails);
-        })
+        });
 
+        this._catalog.subscribe('addToBasket', (phoneId) => {
+            this._cart.add(phoneId)
+        })
+    }
+
+    _initPhoneViewer() {
         this._viewer = new PhoneViewer({
             element: this._element.querySelector('[data-component="phone-viewer"]')
         });
 
+        this._viewer.subscribe('addToBasket', (phoneId) => {
+            this._cart.add(phoneId);
+            console.log('added')
+        });
+
+        this._viewer.subscribe('back', () => {
+            this._viewer.hide();
+            this._catalog.show()
+        })
+    }
+
+    _initCart() {
         this._cart = new ShoppingCart({
             element: this._element.querySelector('[data-component="shopping-cart"]')
         });
+    }
 
+    _initFilter() {
         this._filter = new Filter({
             element: this._element.querySelector('[data-component="filter"]')
         })
