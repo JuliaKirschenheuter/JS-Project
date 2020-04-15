@@ -24,9 +24,7 @@ export default class PhoneViewer extends Component{
 
         this.on('click', 'small-image', (event) => {
             let smallImage = event.target;
-            console.log(smallImage)
             let largeImage = this._element.querySelector('[data-element="large-image"]');
-            console.log(largeImage)
             largeImage.src = smallImage.src;
         })
 
