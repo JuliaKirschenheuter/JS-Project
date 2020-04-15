@@ -15,11 +15,11 @@ const PhoneService = {
     },
 
     getAll(callback) {
-        this._getPhones()
+        this._getPhones('https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/phones.json', callback)
     },
 
     getById(phoneId, callback) {
-        return phoneDetails;
+        this._getPhones(`https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/${phoneId}.json`, callback)
     },
 };
 

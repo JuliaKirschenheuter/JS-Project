@@ -4,10 +4,9 @@ import Component from "../../Component.js";
 
 export default class PhoneCatalog extends Component{
 
-    constructor({element, phones}) {
-        super({element})
-        this._phones = phones;
-        this._render();
+    constructor({element}) {
+        super({element});
+        this._phones = [];
 
         this.on('click', 'phone', (event) => {
             const phone = event.target.closest('[data-element="phone"]');
@@ -18,7 +17,12 @@ export default class PhoneCatalog extends Component{
             const phone = event.target.closest('[data-element="phone"]');
             this.emit('addToBasket', phone.dataset.phoneId);
         });
+    }
 
+    show(phones) {
+        super.show();
+        this._phones = phones;
+        this._render();
     }
 
     _render() {
