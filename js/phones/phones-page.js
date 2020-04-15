@@ -25,15 +25,15 @@ export default class PhonesPage extends Component{
             element: this._element.querySelector('[data-component="phone-catalog"]')
         });
 
-        PhoneService.getAll((phones) => {
-            this._catalog.show(phones)
+        PhoneService.getAll().then((phones) => {
+            return this._catalog.show(phones)
         })
 
         this._catalog.subscribe('phoneSelected', (phoneId) => {
             this._catalog.hide();
-            PhoneService.getById(phoneId, (phone) => {
-                this._viewer.show(phone);
-            });
+            PhoneService.getById(phoneId).then( (phone) => {
+                this._viewer.show(phone)
+            })
         });
 
 

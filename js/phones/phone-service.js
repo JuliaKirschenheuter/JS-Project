@@ -1,25 +1,27 @@
 const PhoneService = {
 
-    _getPhones(url, callback) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        xhr.send();
-        xhr.onload = () => {
+    _getPhones(url) {
+        return new Promise((resolve) => {
+            let xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.send();
+            xhr.onload = () => {
+                let data = JSON.parse(xhr.responseText);
+                resolve(data);
+            }
             if(xhr.status !== 200) {
                 console.log(`Server error: ${ xhr.status } ${ xhr.statusText }`);
                 return [];
             }
-            let data = JSON.parse(xhr.responseText);
-            callback(data);
-        }
+        })
     },
 
-    getAll(callback) {
-        this._getPhones('https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/phones.json', callback)
+    getAll() {
+        return this._getPhones('https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/phones.json')
     },
 
-    getById(phoneId, callback) {
-        this._getPhones(`https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/${phoneId}.json`, callback)
+    getById(phoneId) {
+        return this._getPhones(`https://raw.githubusercontent.com/JuliaKirschenheuter/JS-Project/master/phones/${phoneId}.json`)
     },
 };
 
