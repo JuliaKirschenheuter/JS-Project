@@ -22,6 +22,14 @@ export default class PhoneViewer extends Component{
             this.emit('addToBasket', this._phoneDetails.id);
         });
 
+        this.on('click', 'small-image', (event) => {
+            let smallImage = event.target;
+            console.log(smallImage)
+            let largeImage = this._element.querySelector('[data-element="large-image"]');
+            console.log(largeImage)
+            largeImage.src = smallImage.src;
+        })
+
     }
 
     _render() {
@@ -32,8 +40,7 @@ export default class PhoneViewer extends Component{
           <img 
           class="phone"
           src="${ phone.images[0] }"
-          data-element="phone"
-          data-phone-id="${phone.id}"
+          data-element="large-image"
           >
 
           <button
@@ -51,7 +58,10 @@ export default class PhoneViewer extends Component{
             ${phone.images.map(imageUrl => 
                 `
                     <li>
-                        <img src="${imageUrl}">
+                        <img 
+                        data-element="small-image"
+                        src="${imageUrl}"
+                        >
                     </li>
                 `
             ).join('')}

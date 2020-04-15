@@ -4,25 +4,40 @@ import Component from "../../Component.js";
 export default class ShoppingCart extends Component{
 
     constructor({element}) {
-        super ({element})
+        super ({element});
+        this._items = [];
         this._render();
+
+        this.on('click', 'remove-button', (event) => {
+            let idToRemove = event.target.dataset.itemId
+            this.emit('removePhone', idToRemove);
+        })
     }
 
-    add(phoneId) {
-
+    add (phoneId) {
+        this._items.push(phoneId);
+        this._render()
     }
 
-    remove(phoneId) {
-
+    remove (phoneId) {
+        this._items = this._items.filter(itemId => itemId !== phoneId)
+        this._render()
     }
 
     _render() {
         this._element.innerHTML = `
           <p>Shopping Cart</p>
           <ul>
-            <li>Phone 1</li>
-            <li>Phone 2</li>
-            <li>Phone 3</li>
+            ${this._items.map(itemId => `
+                <li>
+                 ${itemId}
+                </li>
+                
+                <button
+                    data-element="remove-button"
+                    data-item-id="${itemId}"
+                > X </button>
+            `).join('')}
           </ul>
         `
     }
