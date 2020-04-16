@@ -7,9 +7,11 @@ export default class Filter extends Component{
         super({element});
         this._render();
 
-        this.on('input', 'query-field', (event) => {
-            this.emit('queryChanged', event.target.value)
-        })
+        const emitQueryChangedWithDebounce = _.debounce((event) => {
+                this.emit('queryChanged', event.target.value)
+            }, 500);
+
+        this.on('input', 'query-field', emitQueryChangedWithDebounce)
 
         this.on('change', 'order-field', (event) => {
             this.emit('orderChanged', event.target.value)
@@ -19,7 +21,6 @@ export default class Filter extends Component{
     getCurrentData() {
         let orderField = this._element.querySelector('[data-element="order-field"]');
         let queryFiled = this._element.querySelector('[data-element="query-field"]');
-        console.log(queryFiled.value)
         return {
             query: queryFiled.value,
             orderBy: orderField.value
