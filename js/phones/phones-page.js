@@ -17,16 +17,21 @@ export default class PhonesPage extends Component{
         this._initPhoneCatalog();
         this._initPhoneViewer();
         this._initCart();
+
         this._initFilter();
+        this._showPhones();
     }
 
-    async _initPhoneCatalog() {
+    async _showPhones() {
+        const filteredData = this._filter.getCurrentData();
+        let allPhones = await PhoneService.getAll(filteredData);
+        this._catalog.show(allPhones);
+    }
+
+    _initPhoneCatalog() {
         this._catalog = new PhoneCatalog({
             element: this._element.querySelector('[data-component="phone-catalog"]')
         });
-
-        let allPhones = await PhoneService.getAll();
-        this._catalog.show(allPhones)
 
         this._catalog.subscribe('phoneSelected', async (phoneId) => {
             this._catalog.hide();
@@ -48,9 +53,9 @@ export default class PhonesPage extends Component{
             this._cart.add(phoneId);
         });
 
-        this._viewer.subscribe('back', () => {
+        this._viewer.subscribe('back', async () => {
             this._viewer.hide();
-            this._catalog.show()
+            await this._showPhones();
         })
     }
 
@@ -67,6 +72,14 @@ export default class PhonesPage extends Component{
     _initFilter() {
         this._filter = new Filter({
             element: this._element.querySelector('[data-component="filter"]')
+        });
+
+        this._filter.subscribe('queryChanged', async () => {
+            await this._showPhones();
+        })
+
+        this._filter.subscribe('orderChanged', async () => {
+            await this._showPhones();
         })
     }
 
