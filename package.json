@@ -1,0 +1,26 @@
+{
+  "name": "js-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuliaKirschenheuter/JS-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuliaKirschenheuter/JS-Project/issues"
+  },
+  "devDependencies": {
+    "node-static": "^0.7.11",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  },
+  "homepage": "https://github.com/JuliaKirschenheuter/JS-Project#readme"
+}
