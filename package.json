@@ -18,9 +18,16 @@
     "url": "https://github.com/JuliaKirschenheuter/JS-Project/issues"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
     "node-static": "^0.7.11",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   },
-  "homepage": "https://github.com/JuliaKirschenheuter/JS-Project#readme"
+  "homepage": "https://github.com/JuliaKirschenheuter/JS-Project#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.9.2"
+  }
 }
