@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "webpack"
+    "build": "webpack",
+    "start": "webpack-dev-server",
+    "static": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
     "babel-loader": "^8.1.0",
     "node-static": "^0.7.11",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
   },
   "homepage": "https://github.com/JuliaKirschenheuter/JS-Project#readme",
   "dependencies": {
