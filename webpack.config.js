@@ -2,7 +2,6 @@ const path = require('path');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-    mode: "none",
     entry: './js/app.js',
     output: {
         path: path.resolve(__dirname, 'public'),
@@ -30,7 +29,7 @@ module.exports = {
         port: 9000
     },
     optimization: {
-        minimize: true,
+        // minimize: true, //only if we are not using mode: production
         minimizer: [new UglifyJsPlugin({
             sourceMap: true
         })],
