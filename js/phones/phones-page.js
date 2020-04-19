@@ -39,7 +39,7 @@ export default class PhonesPage extends Component{
             this._viewer.show(phone);
         });
 
-        this._catalog.subscribe('addToBasket', (phoneId) => {
+        this._catalog.subscribe('add', (phoneId) => {
             this._cart.add(phoneId)
         })
     }
@@ -63,10 +63,6 @@ export default class PhonesPage extends Component{
         this._cart = new ShoppingCart({
             element: this._element.querySelector('[data-component="shopping-cart"]')
         });
-
-        this._cart.subscribe('removePhone', (id) => {
-            this._cart.remove(id)
-        })
     }
 
     _initFilter() {

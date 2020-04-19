@@ -9,8 +9,8 @@ export default class ShoppingCart extends Component{
         this._render();
 
         this.on('click', 'remove-button', (event) => {
-            let idToRemove = event.target.dataset.itemId
-            this.emit('removePhone', idToRemove);
+            let button = event.target;
+            this.remove(button.dataset.itemId);
         })
     }
 
